@@ -2,7 +2,7 @@
 const AddClass = () => {
     return (
         <div>
-            <h2>add class</h2>
+            <h2>instructor add class</h2>
         </div>
     );
 };

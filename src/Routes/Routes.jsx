@@ -48,29 +48,29 @@ export const router = createBrowserRouter([
     children: [
       //admin routes
       {
-        path: 'manageusers',
+        path: 'manageUsers',
         element: <ManageUsers></ManageUsers>
       },
       {
-        path: 'manageclasses',
+        path: 'manageClasses',
         element: <ManageClasses></ManageClasses>
       },
       // instructor routes
       {
-        path: 'addclass',
+        path: 'addClass',
         element: <AddClass></AddClass>
       },
       {
-        path: 'myclasses',
+        path: 'myClasses',
         element: <MyClasses></MyClasses>
       },
       // student routes
       {
-        path: 'myselectedclasses',
+        path: 'mySelectedClasses',
         element: <MySelectedClasses></MySelectedClasses>
       },
       {
-        path: 'myenrolledclasses',
+        path: 'myEnrolledClasses',
         element: <MyEnrolledClasses></MyEnrolledClasses>
       },
     ]
