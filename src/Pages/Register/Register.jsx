@@ -1,6 +1,48 @@
-import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const Register = () => {
+  const { register,handleSubmit, reset, watch, formState: { errors }} = useForm();
+
+  const {createUser, updateUserProfile} = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const onSubmit = (data) => {
+    console.log(data);
+    createUser(data.email, data.password)
+    .then(result => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
+      updateUserProfile(data.name, data.photoURL)
+      .then( () => {
+        console.log('User Profile info Updated');
+        reset();
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'User Created Successfully',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        navigate('/');
+      })
+      .catch( error => console.log(error))
+    })
+  };
+
+  const password = watch("password");
+
+  useEffect(() => {
+    register("confirmPassword", {
+      validate: (value) =>
+        value === password || "Passwords do not match",
+    });
+  }, [register, password]);
+
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -12,13 +54,14 @@ const Register = () => {
           </p>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <form className="card-body">
+          <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Name</span>
               </label>
               <input
                 type="text"
+                {...register("name")}
                 placeholder="name"
                 className="input input-bordered"
               />
@@ -29,6 +72,7 @@ const Register = () => {
               </label>
               <input
                 type="text"
+                {...register("photoURL")}
                 placeholder="photoURL"
                 className="input input-bordered"
               />
@@ -39,9 +83,11 @@ const Register = () => {
               </label>
               <input
                 type="text"
+                {...register("email", { required: true })}
                 placeholder="email"
                 className="input input-bordered"
               />
+              {errors.email && <span>This field is required</span>}
             </div>
             <div className="form-control">
               <label className="label">
@@ -49,9 +95,25 @@ const Register = () => {
               </label>
               <input
                 type="password"
+                {...register("password", {
+                  required: true,
+                  minLength: 6,
+                  pattern: /(?=.*[A-Z])(?=.*[!@#$&*])/
+                })}
                 placeholder="password"
                 className="input input-bordered"
               />
+              {errors.password?.type === "required" && (
+                <span>Password is required</span>
+              )}
+              {errors.password?.type === "minLength" && (
+                <span>Password must be at least 6 characters</span>
+              )}
+              {errors.password?.type === "pattern" && (
+                <span>
+                  Password must have a capital letter & a special character
+                </span>
+              )}
             </div>
             <div className="form-control">
               <label className="label">
@@ -59,22 +121,26 @@ const Register = () => {
               </label>
               <input
                 type="password"
+                {...register("confirmPassword")}
                 placeholder="confirm password"
                 className="input input-bordered"
               />
-               <label className="label font-semibold">
-              Already Have an Account? <Link className='link' to="/login">Login</Link>
+              {errors.confirmPassword && (
+                <span>{errors.confirmPassword.message}</span>
+              )}
+              <label className="label font-semibold">
+                Already Have an Account?
+                <Link className="link" to="/login">
+                  Login
+                </Link>
               </label>
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-primary">Login</button>
+              <button className="btn btn-primary">Register</button>
             </div>
+            <div className="divider">OR</div>
           </form>
-          <div className="text-center mb-4">
-          <button className="btn btn-primary">
-              Login With Google
-            </button>
-          </div>
+          <SocialLogin></SocialLogin>
         </div>
       </div>
     </div>

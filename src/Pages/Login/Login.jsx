@@ -1,14 +1,31 @@
 /* eslint-disable react/no-unescaped-entities */
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { RiEyeLine, RiEyeOffLine } from "react-icons/ri";
+import { useForm } from "react-hook-form";
+import { AuthContext } from "../../providers/AuthProvider";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+
+  const { register, handleSubmit } = useForm();
+  const {signIn} = useContext(AuthContext);
+  
+  const onSubmit = data => {
+    signIn(data.email, data.password)
+    .then(result => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
+    })
+    .catch(error => {
+      console.log(error);
+    })
+    console.log(data)
   };
 
   return (
@@ -22,13 +39,14 @@ const Login = () => {
           </p>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <form className="card-body">
+          <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
               </label>
               <input
                 type="text"
+                {...register("email")}
                 placeholder="email"
                 className="input input-bordered"
               />
@@ -40,6 +58,7 @@ const Login = () => {
               <div className="relative flex items-center">
                 <input
                   type={showPassword ? "text" : "password"}
+                  {...register("password")}
                   placeholder="password"
                   className="input input-bordered pr-[121px]"
                 />
@@ -64,10 +83,10 @@ const Login = () => {
             <div className="form-control mt-6">
               <button className="btn btn-primary">Login</button>
             </div>
+            <div className="divider">OR</div>
           </form>
-          <div className="text-center mb-4">
-            <button className="btn btn-primary">Login With Google</button>
-          </div>
+          
+          <SocialLogin></SocialLogin>
         </div>
       </div>
     </div>
