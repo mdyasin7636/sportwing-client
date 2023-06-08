@@ -1,11 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
 
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { RiEyeLine, RiEyeOffLine } from "react-icons/ri";
 import { useForm } from "react-hook-form";
-import { AuthContext } from "../../providers/AuthProvider";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -14,7 +14,7 @@ const Login = () => {
   };
 
   const { register, handleSubmit } = useForm();
-  const {signIn} = useContext(AuthContext);
+  const {signIn} = useAuth();
   
   const onSubmit = data => {
     signIn(data.email, data.password)

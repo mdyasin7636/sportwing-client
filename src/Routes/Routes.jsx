@@ -6,6 +6,13 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import Instructors from "../Pages/Instructors/Instructors";
 import Classes from "../Pages/Classes/Classes";
+import Dashboard from "../Layouts/Dashboard";
+import MySelectedClasses from "../Pages/Dashboard/MySelectedClasses/MySelectedClasses";
+import MyEnrolledClasses from "../Pages/Dashboard/MyEnrolledClasses/MyEnrolledClasses";
+import ManageUsers from "../Pages/Dashboard/ManageUsers/ManageUsers";
+import ManageClasses from "../Pages/Dashboard/ManageClasses/ManageClasses";
+import AddClass from "../Pages/Dashboard/AddClass/AddClass";
+import MyClasses from "../Pages/Dashboard/MyClasses/MyClasses";
 
 export const router = createBrowserRouter([
   {
@@ -34,5 +41,38 @@ export const router = createBrowserRouter([
         element: <Register></Register>,
       },
     ],
+  },
+  {
+    path: 'dashboard',
+    element: <Dashboard></Dashboard>,
+    children: [
+      //admin routes
+      {
+        path: 'manageusers',
+        element: <ManageUsers></ManageUsers>
+      },
+      {
+        path: 'manageclasses',
+        element: <ManageClasses></ManageClasses>
+      },
+      // instructor routes
+      {
+        path: 'addclass',
+        element: <AddClass></AddClass>
+      },
+      {
+        path: 'myclasses',
+        element: <MyClasses></MyClasses>
+      },
+      // student routes
+      {
+        path: 'myselectedclasses',
+        element: <MySelectedClasses></MySelectedClasses>
+      },
+      {
+        path: 'myenrolledclasses',
+        element: <MyEnrolledClasses></MyEnrolledClasses>
+      },
+    ]
   },
 ]);
