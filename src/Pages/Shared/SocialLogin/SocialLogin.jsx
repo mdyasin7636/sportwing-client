@@ -1,6 +1,5 @@
 import { FaGoogle } from 'react-icons/fa';
 import useAuth from "../../../hooks/useAuth";
-import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const SocialLogin = () => {
@@ -25,10 +24,8 @@ const SocialLogin = () => {
           body: JSON.stringify(saveUser)
         })
         .then(res => res.json())
-        .then(data => {
-          if(data.insertedId) {
+        .then(() => {
             navigate(from, {replace: true});
-          }
         })
         })
         .catch( error => console.log(error))
