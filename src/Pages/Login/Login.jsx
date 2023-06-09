@@ -1,11 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { RiEyeLine, RiEyeOffLine } from "react-icons/ri";
 import { useForm } from "react-hook-form";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -15,12 +16,24 @@ const Login = () => {
 
   const { register, handleSubmit } = useForm();
   const {signIn} = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || '/';
   
   const onSubmit = data => {
     signIn(data.email, data.password)
     .then(result => {
       const loggedUser = result.user;
       console.log(loggedUser);
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'User Login Successful',
+        showConfirmButton: false,
+        timer: 1500
+      });
+      navigate(from, {replace: true});
     })
     .catch(error => {
       console.log(error);
