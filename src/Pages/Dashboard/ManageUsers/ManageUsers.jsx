@@ -1,13 +1,31 @@
 import { useQuery } from "@tanstack/react-query";
 
 const ManageUsers = () => {
-  const { data: users = [], refetch } = useQuery(["users"], async () => {
+  
+  
+    const { data: users = [], refetch } = useQuery(["users"], async () => {
     const res = await fetch("http://localhost:5000/users");
     return res.json();
   });
 
+  
   const handleMakeAdmin = user => {
-    fetch(`http://localhost:5000/users/admin/${user._id}`, {})
+    fetch(`http://localhost:5000/users/admin/${user._id}`, {
+        method: 'PATCH'
+    })
+    .then( res => res.json())
+    .then(data => {
+        console.log(data);
+        if(data.modifiedCount) {
+            refetch();
+        }
+    })
+  }
+
+  const handleMakeInstructor = user => {
+    fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+        method: 'PATCH'
+    })
     .then( res => res.json())
     .then(data => {
         console.log(data);
@@ -43,7 +61,7 @@ const ManageUsers = () => {
                 { user.role === 'admin' ? 'disabled' : <button onClick={()=> handleMakeAdmin(user)} className="btn btn-sm btn-outline">Make Admin</button>}
                 </td>
                 <td>
-                { user.role === 'instructor' ? 'disabled' : <button className="btn btn-sm btn-outline">Make Instructor</button>}
+                { user.role === 'instructor' ? 'disabled' : <button onClick={()=> handleMakeInstructor(user)} className="btn btn-sm btn-outline">Make Instructor</button>}
                 </td>
               </tr>)
            }
