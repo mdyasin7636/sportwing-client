@@ -8,15 +8,15 @@ const PopularInstructor = () => {
       .then((res) => res.json())
       .then((data) => {
         const filteredInstructors = data.filter(
-          (instructor) => instructor.role === "instructor"
-        );
+          (instructor) => instructor.role === "instructor").slice(0, 6);
         setInstructors(filteredInstructors);
       });
   }, []);
 
   return (
     <div>
-    <h2>PopularInstructor</h2>
+      <h2 className="text-center text-2xl">Popular Instructor</h2>
+      <div className="grid md:grid-cols-3">
     {instructors.map((instructor) => (
       <div key={instructor.id} className="card w-96 bg-base-100 shadow-xl">
         <figure>
@@ -28,6 +28,7 @@ const PopularInstructor = () => {
       </div>
     ))}
   </div>
+    </div>
   );
 };
 

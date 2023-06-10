@@ -58,10 +58,22 @@ const ManageUsers = () => {
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>
-                { user.role === 'admin' ? 'disabled' : <button onClick={()=> handleMakeAdmin(user)} className="btn btn-sm btn-outline">Make Admin</button>}
+                <button
+                    onClick={() => handleMakeAdmin(user)}
+                    className="btn btn-sm btn-outline"
+                    disabled={user.role === "admin"}
+                  >
+                    Make Admin
+                  </button>
                 </td>
                 <td>
-                { user.role === 'instructor' ? 'disabled' : <button onClick={()=> handleMakeInstructor(user)} className="btn btn-sm btn-outline">Make Instructor</button>}
+                <button
+                    onClick={() => handleMakeInstructor(user)}
+                    className="btn btn-sm btn-outline"
+                    disabled={user.role === "instructor"}
+                  >
+                    Make Instructor
+                  </button>
                 </td>
               </tr>)
            }

@@ -1,12 +1,16 @@
 import { Link, Outlet } from "react-router-dom";
 import { FaUsers,  } from 'react-icons/fa';
 import { SiGoogleclassroom,  } from 'react-icons/si';
+import useAdmin from "../hooks/useAdmin";
+import useInstructor from "../hooks/useInstructor";
 
 const Dashboard = () => {
 
   // TODO:
-  const isAdmin = true;
-  const isInstructor = false;
+  const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructor();
+  // const isAdmin = true;
+  // const isInstructor = true;
 
     return (
         <div className="drawer lg:drawer-open">
@@ -29,6 +33,9 @@ const Dashboard = () => {
       <li>
         <Link to='/dashboard/manageClasses'><SiGoogleclassroom/>Manage Classes</Link>
       </li>
+      <li>
+        <Link to='/'>Home</Link>
+      </li>
         
         </> : isInstructor ? <>
         
@@ -38,6 +45,9 @@ const Dashboard = () => {
       <li>
         <Link to='/dashboard/myClasses'>My Classes</Link>
       </li>
+      <li>
+        <Link to='/'>Home</Link>
+      </li>
 
         </> : <>
         
@@ -46,6 +56,9 @@ const Dashboard = () => {
       </li>
       <li>
         <Link to='/dashboard/myEnrolledClasses'>My Enrolled Classes</Link>
+      </li>
+      <li>
+        <Link to='/'>Home</Link>
       </li>
         
         </>
