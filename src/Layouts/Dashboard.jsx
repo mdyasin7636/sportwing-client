@@ -5,7 +5,7 @@ import { SiGoogleclassroom,  } from 'react-icons/si';
 const Dashboard = () => {
 
   // TODO:
-  const isAdmin = true;
+  const isAdmin = false;
   const isInstructor = true;
 
     return (
