@@ -1,17 +1,20 @@
 import { useForm } from "react-hook-form";
+import useAuth from "../../../hooks/useAuth";
 
 const img_hosting_token = import.meta.env.VITE_Image_Upload_token;
 
 const AddClass = () => {
 
-    const { register, handleSubmit, reset, watch, formState: { errors }} = useForm();
+    const {user} = useAuth();
+
+    const { register, handleSubmit, formState: { errors }} = useForm();
 
     const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`
 
     const onSubmit = data => {
 
       const formData = new FormData();
-      formData.append('image', data.image[0])
+      formData.append('image', data.classImage[0])
 
       fetch(img_hosting_url, {
         method: 'POST',
@@ -21,15 +24,15 @@ const AddClass = () => {
       .then(imgResponse => {
         if(imgResponse.success) {
           const imgURL = imgResponse.data.display_url;
-          const {className, instructorName, instructorEmail, availableSeats, price} = data;
-          const newClass = {className, classImage:imgURL, instructorName, instructorEmail, availableSeats, price}
+          const {className, availableSeats, price} = data;
+          const newClass = {className, classImage:imgURL, instructorName:user.displayName, instructorEmail:user.email, availableSeats, price, status: 'pending'}
           console.log(newClass);
         }
       })
 
         console.log(data)
     };
-
+    console.log(errors);
     console.log(img_hosting_token);
 
 
@@ -64,7 +67,8 @@ const AddClass = () => {
           </label>
           <input
             type="text"
-            {...register("instructorName", { required: true })}
+            defaultValue={user.displayName}
+            readOnly
             placeholder="instructor name"
             className="input input-bordered w-full max-w-xs"
           />
@@ -75,7 +79,8 @@ const AddClass = () => {
           </label>
           <input
             type="text"
-            {...register("instructorEmail", { required: true })}
+            defaultValue={user.email}
+            readOnly
             placeholder="instructor email"
             className="input input-bordered w-full max-w-xs"
           />
