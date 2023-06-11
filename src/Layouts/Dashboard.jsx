@@ -9,8 +9,6 @@ const Dashboard = () => {
   // TODO:
   const [isAdmin] = useAdmin();
   const [isInstructor] = useInstructor();
-  // const isAdmin = true;
-  // const isInstructor = true;
 
     return (
         <div className="drawer lg:drawer-open">

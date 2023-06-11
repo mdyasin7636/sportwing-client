@@ -1,9 +1,13 @@
 import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const img_hosting_token = import.meta.env.VITE_Image_Upload_token;
 
 const AddClass = () => {
+
+    const [axiosSecure] = useAxiosSecure()
 
     const {user} = useAuth();
 
@@ -25,12 +29,24 @@ const AddClass = () => {
         if(imgResponse.success) {
           const imgURL = imgResponse.data.display_url;
           const {className, availableSeats, price} = data;
-          const newClass = {className, classImage:imgURL, instructorName:user.displayName, instructorEmail:user.email, availableSeats, price, status: 'pending'}
+          const newClass = {className, classImage:imgURL, instructorName:user.displayName, instructorEmail:user.email, availableSeats: parseFloat(availableSeats), price: parseFloat(price), status: 'pending'}
           console.log(newClass);
+          axiosSecure.post('/classes', newClass)
+          .then(data => {
+            console.log('after posting new class', data.data);
+            if(data.data.insertedId) {
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Class Added Successfully',
+                showConfirmButton: false,
+                timer: 1500
+              })
+            }
+          })
         }
       })
 
-        console.log(data)
     };
     console.log(errors);
     console.log(img_hosting_token);

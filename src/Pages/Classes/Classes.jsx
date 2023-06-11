@@ -1,20 +1,43 @@
 const Classes = () => {
   return (
     <div>
-      <div className="card card-side bg-base-100 shadow-xl">
-        <figure>
-          <img
-            src="/images/stock/photo-1635805737707-575885ab0820.jpg"
-            alt="Movie"
-          />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">New movie is released!</h2>
-          <p>Click the button to watch on Jetflix app.</p>
-          <div className="card-actions justify-end">
-            <button className="btn btn-primary">Watch</button>
-          </div>
-        </div>
+      <div className="overflow-x-auto">
+        <table className="table">
+          {/* head */}
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Instructor Name</th>
+              <th>Available seats</th>
+              <th>Price</th>
+              <th>Action </th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* row 1 */}
+            <tr>
+              <th>1</th>
+              <td>
+                <div className="flex items-center space-x-3">
+                  <div className="avatar">
+                    <div className="mask mask-squircle w-12 h-12">
+                     <img src="" alt="" />
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>Cricket</td>
+              <td>Khan</td>
+              <td>10</td>
+              <td>$100</td>
+              <td>
+                <button className="btn btn-ghost btn-xs">Apply</button>
+              </td>
+            </tr>
+          </tbody>  
+        </table>
       </div>
     </div>
   );
