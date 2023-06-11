@@ -9,8 +9,9 @@ const MySelectedClasses = () => {
           <thead>
             <tr>
               <th>#</th>
-              <th>Class Image</th>
               <th>Class Name</th>
+              <th>Instructor Name</th>
+              <th>Price</th>
               <th>Action</th>
               <th>Action</th>
             </tr>
@@ -18,20 +19,15 @@ const MySelectedClasses = () => {
           <tbody>
             {/* row 1 */}
             <tr>
-              <th>1</th>
-              <td>
-                <div className="flex items-center space-x-3">
-                  <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12">
-                      <img src="" />
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td></td>
+              <td>1</td>
+              <td>Class Name</td>
+              <td>Instructor Name</td>
               <td>Purple</td>
               <td>
-                <button className="btn btn-ghost btn-xs">details</button>
+                <button className="btn btn-ghost btn-xs">Pay</button>
+              </td>
+              <td>
+                <button className="btn btn-ghost btn-xs">Delete</button>
               </td>
             </tr>
           </tbody>

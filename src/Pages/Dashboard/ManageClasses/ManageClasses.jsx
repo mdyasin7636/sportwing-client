@@ -1,9 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useState } from "react";
 
 const ManageClasses = () => {
 
   const [axiosSecure] = useAxiosSecure();
+  
+  const [feedbackModalVisible, setFeedbackModalVisible] = useState(false);
+  const [feedbackText, setFeedbackText] = useState("");
+  const [selectedClassId, setSelectedClassId] = useState("");
 
   const { data: classes = [], refetch } = useQuery(["classes"], async () => {
     const res = await axiosSecure.get("/classes");
@@ -26,6 +31,26 @@ const ManageClasses = () => {
       refetch();
     } catch (error) {
       console.error("Error denying class:", error);
+    }
+  };
+
+
+  const handleOpenFeedbackModal = (classId) => {
+    setSelectedClassId(classId);
+    setFeedbackModalVisible(true);
+  };
+
+  const handleSubmitFeedback = async () => {
+    try {
+      await axiosSecure.post("/feedback", {
+        classId: selectedClassId,
+        feedback: feedbackText,
+      });
+      setFeedbackModalVisible(false);
+      setFeedbackText("");
+      refetch();
+    } catch (error) {
+      console.error("Error submitting feedback:", error);
     }
   };
 
@@ -87,7 +112,10 @@ const ManageClasses = () => {
                     Deny
                   </button>
                   <br />
-                  <button className="btn btn-outline btn-xs my-1">
+                  <button
+                    className="btn btn-outline btn-xs my-1"
+                    onClick={() => handleOpenFeedbackModal(classItem._id)}
+                  >
                     Feedback
                   </button>
                 </th>
@@ -95,6 +123,35 @@ const ManageClasses = () => {
             ))}
           </tbody>
         </table>
+
+        {feedbackModalVisible && (
+        <div className="fixed inset-0 flex items-center justify-center">
+          <div className="bg-black rounded-lg p-4">
+            <h2 className="text-lg font-bold mb-4">Provide Feedback</h2>
+            <textarea
+              className="w-full h-36 p-2 border border-gray-300 rounded mb-4"
+              placeholder="Enter your feedback..."
+              value={feedbackText}
+              onChange={(e) => setFeedbackText(e.target.value)}
+            ></textarea>
+            <div className="flex justify-end">
+              <button
+                className="btn btn-primary mr-2"
+                onClick={handleSubmitFeedback}
+              >
+                Submit
+              </button>
+              <button
+                className="btn btn-outline"
+                onClick={() => setFeedbackModalVisible(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       </div>
     </div>
   );

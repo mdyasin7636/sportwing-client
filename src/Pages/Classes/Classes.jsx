@@ -1,45 +1,85 @@
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+
 const Classes = () => {
+  const [axiosSecure] = useAxiosSecure();
+
+  const {user} = useAuth();
+  const navigate = useNavigate();
+
+  const { data: classes = [] } = useQuery(["classes"], async () => {
+    const res = await axiosSecure.get("/classes");
+    return res.data;
+  });
+
+  const handleBookClass = (item) => {
+    if(user) {
+      const bookedItem = {
+        className: item.className,
+        instructorName: item.instructorName,
+        price: item.price,
+        bookedClassId: item._id,
+      };
+      fetch('http://localhost:5000/bookedClass', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(bookedItem)
+      })
+      .then(res => res.json())
+      .then(data => {
+        if(data.insertedId){
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Class Booked Successfully',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        }
+      })
+    }
+    else{
+      Swal.fire({
+        title: 'Please Login to Book Class',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Login'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            navigate('/login')
+        }
+      })
+    }
+  }
+
   return (
-    <div>
-      <div className="overflow-x-auto">
-        <table className="table">
-          {/* head */}
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Image</th>
-              <th>Name</th>
-              <th>Instructor Name</th>
-              <th>Available seats</th>
-              <th>Price</th>
-              <th>Action </th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* row 1 */}
-            <tr>
-              <th>1</th>
-              <td>
-                <div className="flex items-center space-x-3">
-                  <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12">
-                     <img src="" alt="" />
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>Cricket</td>
-              <td>Khan</td>
-              <td>10</td>
-              <td>$100</td>
-              <td>
-                <button className="btn btn-ghost btn-xs">Apply</button>
-              </td>
-            </tr>
-          </tbody>  
-        </table>
-      </div>
-    </div>
+    <div className="grid grid-cols-2 gap-8 mx-4 my-4">
+    {classes
+      .filter((classItem) => classItem.status === "approved")
+      .map((classItem) => (
+        <div className="card card-side bg-base-100 shadow-xl" key={classItem._id}>
+          <figure className="w-80 ">
+            <img className="rounded-lg" src={classItem.classImage}/>
+          </figure>
+          <div className="card-body">
+            <h2 className="card-title">{classItem.className}</h2>
+            <p>Instructor: {classItem.instructorName}</p>
+            <p>Available Seats: {classItem.availableSeats}</p>
+            <p>Price: ${classItem.price}</p>
+            <div className="card-actions justify-start">
+              <button onClick={()=>handleBookClass(classItem)} className="btn btn-primary">Book Class</button>
+            </div>
+          </div>
+        </div>
+      ))}
+  </div>
   );
 };
 
