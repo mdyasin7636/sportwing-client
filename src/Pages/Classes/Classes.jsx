@@ -16,12 +16,13 @@ const Classes = () => {
   });
 
   const handleBookClass = (item) => {
-    if(user) {
+    if(user && user.email) {
       const bookedItem = {
+        bookedClassId: item._id,
         className: item.className,
         instructorName: item.instructorName,
         price: item.price,
-        bookedClassId: item._id,
+        email: user.email 
       };
       fetch('http://localhost:5000/bookedClass', {
         method: 'POST',

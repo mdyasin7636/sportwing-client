@@ -1,5 +1,16 @@
+// import { useQuery } from "@tanstack/react-query";
+// import useAxiosSecure from "../../../hooks/useAxiosSecure";
+// import useAuth from "../../../hooks/useAuth";
+import useBookedClass from "../../../hooks/useBookedClass";
 
 const MySelectedClasses = () => {
+
+  // const [axiosSecure] = useAxiosSecure();
+  // const {user} = useAuth();
+  const [bookedClass] = useBookedClass()
+
+  
+
   
     return (
     <div className="w-full">
@@ -17,20 +28,22 @@ const MySelectedClasses = () => {
             </tr>
           </thead>
           <tbody>
-            {/* row 1 */}
-            <tr>
-              <td>1</td>
-              <td>Class Name</td>
-              <td>Instructor Name</td>
-              <td>Purple</td>
-              <td>
-                <button className="btn btn-ghost btn-xs">Pay</button>
-              </td>
-              <td>
-                <button className="btn btn-ghost btn-xs">Delete</button>
-              </td>
-            </tr>
-          </tbody>
+  {bookedClass.map((classData, index) => (
+    <tr key={index}>
+      <td>{index + 1}</td>
+      <td>{classData.className}</td>
+      <td>{classData.instructorName}</td>
+      <td>${classData.price}</td>
+      <td>
+        <button className="btn btn-ghost btn-xs">Pay</button>
+      </td>
+      <td>
+        <button className="btn btn-ghost btn-xs">Delete</button>
+      </td>
+    </tr>
+  ))}
+</tbody>
+
         </table>
       </div>
     </div>
