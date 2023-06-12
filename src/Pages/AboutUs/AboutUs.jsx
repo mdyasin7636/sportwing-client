@@ -2,12 +2,12 @@ import { IoIosCheckmarkCircle } from "react-icons/io";
 
 const AboutUs = () => {
   return (
-   <div>
-     <h2 className="text-center font-bold text-3xl mt-6 mb-6">About Us</h2>
+   <div className="mb-10">
+     <h2 className="text-center font-bold text-3xl mt-10 mb-6">About Us</h2>
      <div className="grid md:grid-cols-2">
       <div className="p-5">
         <h2 className="text-center font-bold text-lg mb-4">We Are Best Sports Summer Camp!</h2>
-        <p className="text-center font-semibold">
+        <p className="text-center font-semibold ml-10">
           We are dedicated to providing a dynamic and inclusive environment where
           young athletes can explore a wide range of sports and develop their
           athletic skills. From the thrill of scoring goals in football to the
