@@ -3,13 +3,14 @@ import { FaUsers,  } from 'react-icons/fa';
 import { SiGoogleclassroom,  } from 'react-icons/si';
 import useAdmin from "../hooks/useAdmin";
 import useInstructor from "../hooks/useInstructor";
+import { AiOutlineHome, AiOutlineProfile, AiOutlineBook } from "react-icons/ai";
+import { MdOutlinePayment, MdAssignmentTurnedIn, MdAssignmentInd } from "react-icons/md";
 
 const Dashboard = () => {
 
   // TODO:
   const [isAdmin] = useAdmin();
   const [isInstructor] = useInstructor();
-  console.log(isAdmin);
 
     return (
         <div className="drawer lg:drawer-open">
@@ -26,44 +27,41 @@ const Dashboard = () => {
       {
         isAdmin ? <>
         
-        <li>
+        <li className="font-semibold text-lg">
         <Link to='/dashboard/manageUsers'><FaUsers/>Manage Users</Link>
       </li>
-      <li>
+      <li className="font-semibold text-lg">
         <Link to='/dashboard/manageClasses'><SiGoogleclassroom/>Manage Classes</Link>
       </li>
-      <li>
-        <Link to='/'>Home</Link>
+      <li className="font-semibold text-lg">
+        <Link to='/'> <AiOutlineHome/> Home</Link>
       </li>
         
         </> : isInstructor ? <>
         
-        <li>
-        <Link to='/dashboard/addClass'>Add Class</Link>
+        <li className="font-semibold text-lg">
+        <Link to='/dashboard/addClass'><AiOutlineBook/>Add Class</Link>
       </li>
-      <li>
-        <Link to='/dashboard/myClasses'>My Classes</Link>
+      <li className="font-semibold text-lg">
+        <Link to='/dashboard/myClasses'><AiOutlineProfile/>My Classes</Link>
       </li>
-      <li>
-        <Link to='/'>Home</Link>
+      <li className="font-semibold text-lg">
+      <Link to='/'> <AiOutlineHome/> Home</Link>
       </li>
 
         </> : <>
         
-        <li>
-        <Link to='/dashboard/mySelectedClasses'>My Selected Classes</Link>
+        <li className="font-semibold text-lg">
+        <Link to='/dashboard/mySelectedClasses'><MdAssignmentTurnedIn/>My Selected Classes</Link>
       </li>
-      <li>
-        <Link to='/dashboard/myEnrolledClasses'>My Enrolled Classes</Link>
+      <li className="font-semibold text-lg">
+        <Link to='/dashboard/myEnrolledClasses'><MdAssignmentInd/>My Enrolled Classes</Link>
       </li>
-      <li>
-        <Link to='/dashboard/payment'>Payment</Link>
+      <li className="font-semibold text-lg">
+        <Link to='/dashboard/paymentHistory'><MdOutlinePayment/>Payment History</Link>
       </li>
-      <li>
-        <Link to='/dashboard/paymentHistory'>Payment History</Link>
-      </li>
-      <li>
-        <Link to='/'>Home</Link>
+      <li className="font-semibold text-lg">
+      <Link to='/'> <AiOutlineHome/> Home</Link>
       </li>
         </>
       }

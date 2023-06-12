@@ -4,21 +4,21 @@ const Instructors = () => {
   const [instructors, setInstructors] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/users')
-      .then(res => res.json())
-      .then(data => {
+    fetch("https://sportwing-server.vercel.app/users")
+      .then((res) => res.json())
+      .then((data) => {
         const filteredInstructors = data.filter(
-          instructor => instructor.role === 'instructor'
+          (instructor) => instructor.role === "instructor"
         );
         setInstructors(filteredInstructors);
-      })
+      });
   }, []);
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto mx-6 my-5">
       <table className="table">
         <thead>
-          <tr>
+          <tr className="text-xl">
             <th>#</th>
             <th>Image</th>
             <th>Name</th>
@@ -38,8 +38,8 @@ const Instructors = () => {
                   </div>
                 </div>
               </td>
-              <td>{instructor.name}</td>
-              <td>{instructor.email}</td>
+              <td className="font-semibold">{instructor.name}</td>
+              <td className="font-semibold">{instructor.email}</td>
             </tr>
           ))}
         </tbody>

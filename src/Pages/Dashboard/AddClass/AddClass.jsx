@@ -54,7 +54,6 @@ const AddClass = () => {
 
   return (
     <div>
-      <h2>instructor add class</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid grid-cols-2 gap-4">
         <div className="form-control w-full max-w-xs">

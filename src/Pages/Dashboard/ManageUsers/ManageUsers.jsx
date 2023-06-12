@@ -2,40 +2,38 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const ManageUsers = () => {
+  const [axiosSecure] = useAxiosSecure();
 
-    const [axiosSecure] = useAxiosSecure();
-  
-    const { data: users = [], refetch } = useQuery(["users"], async () => {
+  const { data: users = [], refetch } = useQuery(["users"], async () => {
     const res = await axiosSecure.get("/users");
     return res.data;
   });
 
-  
-  const handleMakeAdmin = user => {
-    fetch(`http://localhost:5000/users/admin/${user._id}`, {
-        method: 'PATCH'
+  const handleMakeAdmin = (user) => {
+    fetch(`https://sportwing-server.vercel.app/users/admin/${user._id}`, {
+      method: "PATCH",
     })
-    .then( res => res.json())
-    .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         console.log(data);
-        if(data.modifiedCount) {
-            refetch();
+        if (data.modifiedCount) {
+          refetch();
         }
-    })
-  }
+      });
+  };
 
-  const handleMakeInstructor = user => {
-    fetch(`http://localhost:5000/users/instructor/${user._id}`, {
-        method: 'PATCH'
+  const handleMakeInstructor = (user) => {
+    fetch(`https://sportwing-server.vercel.app/users/instructor/${user._id}`, {
+      method: "PATCH",
     })
-    .then( res => res.json())
-    .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         console.log(data);
-        if(data.modifiedCount) {
-            refetch();
+        if (data.modifiedCount) {
+          refetch();
         }
-    })
-  }
+      });
+  };
 
   return (
     <div className="w-full">
@@ -53,14 +51,13 @@ const ManageUsers = () => {
             </tr>
           </thead>
           <tbody>
-           
-           {
-            users.map((user, index) => <tr key={user._id}>
+            {users.map((user, index) => (
+              <tr key={user._id}>
                 <th>{index + 1}</th>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>
-                <button
+                  <button
                     onClick={() => handleMakeAdmin(user)}
                     className="btn btn-sm btn-outline"
                     disabled={user.role === "admin"}
@@ -69,7 +66,7 @@ const ManageUsers = () => {
                   </button>
                 </td>
                 <td>
-                <button
+                  <button
                     onClick={() => handleMakeInstructor(user)}
                     className="btn btn-sm btn-outline"
                     disabled={user.role === "instructor"}
@@ -77,8 +74,8 @@ const ManageUsers = () => {
                     Make Instructor
                   </button>
                 </td>
-              </tr>)
-           }
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

@@ -12,25 +12,25 @@ const Navbar = () => {
 
   const navOptions = (
     <>
-      <li>
+      <li className="font-semibold text-lg">
         <Link to="/">Home</Link>
       </li>
-      <li>
+      <li className="font-semibold text-lg">
         <Link to="/instructors">Instructors</Link>
       </li>
-      <li>
+      <li className="font-semibold text-lg">
         <Link to="/classes">Classes</Link>
       </li>
-
       {
       user ? 
-        <li> <Link to="/dashboard">Dashboard</Link> </li> : "" 
+        <li className="font-semibold text-lg"> <Link to="/dashboard">Dashboard</Link> </li> : "" 
       }
     </>
   );
 
   return (
-    <div className="navbar bg-base-100">
+    
+    <div className="navbar bg-base-200">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -56,7 +56,7 @@ const Navbar = () => {
             {navOptions}
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl">SportWing</a>
+        <a className="btn btn-ghost normal-case text-2xl font-bold">SportWing</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
@@ -72,7 +72,7 @@ const Navbar = () => {
             <img className="w-12 rounded-full" src={user?.photoURL} />
           </div>
         ) : (
-          <Link className="btn btn-primary" to="/login">
+          <Link className="btn btn-outline" to="/login">
             Login
           </Link>
         )}
