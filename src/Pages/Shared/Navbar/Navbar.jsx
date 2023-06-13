@@ -2,7 +2,15 @@ import { Link } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
-  const { user } = useAuth();
+  const { user, logOut } = useAuth();
+
+  const handleLogout = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const navOptions = (
     <>
@@ -15,15 +23,18 @@ const Navbar = () => {
       <li className="font-semibold text-lg">
         <Link to="/classes">Classes</Link>
       </li>
-      {
-      user ? 
-        <li className="font-semibold text-lg"> <Link to="/dashboard">Dashboard</Link> </li> : "" 
-      }
+      {user ? (
+        <li className="font-semibold text-lg">
+          {" "}
+          <Link to="/dashboard">Dashboard</Link>{" "}
+        </li>
+      ) : (
+        ""
+      )}
     </>
   );
 
   return (
-    
     <div className="navbar bg-base-200">
       <div className="navbar-start">
         <div className="dropdown">
@@ -50,26 +61,37 @@ const Navbar = () => {
             {navOptions}
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-2xl font-bold">SportWing</a>
+        <a className="btn btn-ghost normal-case text-2xl font-bold">
+          SportWing
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          {navOptions}
-        </ul>
+        <ul className="menu menu-horizontal px-1">{navOptions}</ul>
       </div>
       <div className="navbar-end">
-        {user ? (
-          <div>
-            <img className="w-12 rounded-full" src={user?.photoURL} />
-          </div>
-        ) : (
-          <Link className="btn btn-outline" to="/login">
-            Login
-          </Link>
-        )}
+        <div className="mr-4">
+          {user ? (
+            <div>
+              <img className="w-12 rounded-full" src={user?.photoURL} />
+            </div>
+          ) : (
+            <Link className="btn btn-outline" to="/login">
+              Login
+            </Link>
+          )}
+        </div>
+        <div className="mr-2">
+          {user && (
+            <button className="btn btn-outline" onClick={handleLogout}>
+              Logout
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
 };
 
 export default Navbar;
+
+// referrerPolicy="no-referrer"

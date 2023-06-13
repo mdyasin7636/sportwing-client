@@ -8,7 +8,7 @@ const useBookedClass = () => {
     queryKey: ["bookedClass", user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `https://sportwing-server.vercel.app/bookedClass?email=${user.email}`
+        `http://localhost:5000/bookedClass?email=${user.email}`
       );
       return res.json();
     },

@@ -5,12 +5,14 @@ import useAdmin from "../hooks/useAdmin";
 import useInstructor from "../hooks/useInstructor";
 import { AiOutlineHome, AiOutlineProfile, AiOutlineBook } from "react-icons/ai";
 import { MdOutlinePayment, MdAssignmentTurnedIn, MdAssignmentInd } from "react-icons/md";
+import useStudent from "../hooks/useStudent";
 
 const Dashboard = () => {
 
   // TODO:
   const [isAdmin] = useAdmin();
   const [isInstructor] = useInstructor();
+  const [isStudent] = useStudent();
 
     return (
         <div className="drawer lg:drawer-open">
@@ -23,9 +25,9 @@ const Dashboard = () => {
   <div className="drawer-side">
     <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
     <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
-      
+
       {
-        isAdmin ? <>
+        isAdmin && <>
         
         <li className="font-semibold text-lg">
         <Link to='/dashboard/manageUsers'><FaUsers/>Manage Users</Link>
@@ -37,7 +39,11 @@ const Dashboard = () => {
         <Link to='/'> <AiOutlineHome/> Home</Link>
       </li>
         
-        </> : isInstructor ? <>
+        </>
+      }
+
+      {
+        isInstructor && <>
         
         <li className="font-semibold text-lg">
         <Link to='/dashboard/addClass'><AiOutlineBook/>Add Class</Link>
@@ -49,7 +55,11 @@ const Dashboard = () => {
       <Link to='/'> <AiOutlineHome/> Home</Link>
       </li>
 
-        </> : <>
+        </>
+      }
+
+      {
+        isStudent &&  <>
         
         <li className="font-semibold text-lg">
         <Link to='/dashboard/mySelectedClasses'><MdAssignmentTurnedIn/>My Selected Classes</Link>
@@ -65,7 +75,6 @@ const Dashboard = () => {
       </li>
         </>
       }
-
     </ul>
   
   </div>

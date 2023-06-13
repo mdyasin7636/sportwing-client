@@ -18,8 +18,9 @@ const SocialLogin = () => {
           name: loggedUser.displayName,
           email: loggedUser.email,
           photo: loggedUser.photoURL,
+          role: 'Student'
         };
-        fetch("https://sportwing-server.vercel.app/users", {
+        fetch("http://localhost:5000/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",

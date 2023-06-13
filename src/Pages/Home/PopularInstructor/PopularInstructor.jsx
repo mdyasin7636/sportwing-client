@@ -4,11 +4,11 @@ const PopularInstructor = () => {
   const [instructors, setInstructors] = useState([]);
 
   useEffect(() => {
-    fetch("https://sportwing-server.vercel.app/users")
+    fetch("http://localhost:5000/users")
       .then((res) => res.json())
       .then((data) => {
         const filteredInstructors = data
-          .filter((instructor) => instructor.role === "instructor")
+          .filter((instructor) => instructor.role === "Instructor")
           .slice(0, 6);
         setInstructors(filteredInstructors);
       });

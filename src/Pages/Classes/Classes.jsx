@@ -26,7 +26,7 @@ const Classes = () => {
         classImage: item.classImage,
         availableSeats: item.availableSeats,
       };
-      fetch("https://sportwing-server.vercel.app/bookedClass", {
+      fetch("http://localhost:5000/bookedClass", {
         method: "POST",
         headers: {
           "content-type": "application/json",

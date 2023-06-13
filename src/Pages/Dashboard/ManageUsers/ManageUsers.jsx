@@ -10,7 +10,7 @@ const ManageUsers = () => {
   });
 
   const handleMakeAdmin = (user) => {
-    fetch(`https://sportwing-server.vercel.app/users/admin/${user._id}`, {
+    fetch(`http://localhost:5000/users/admin/${user._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -23,7 +23,7 @@ const ManageUsers = () => {
   };
 
   const handleMakeInstructor = (user) => {
-    fetch(`https://sportwing-server.vercel.app/users/instructor/${user._id}`, {
+    fetch(`http://localhost:5000/users/instructor/${user._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -47,7 +47,8 @@ const ManageUsers = () => {
               <th>Name</th>
               <th>Email</th>
               <th>Role</th>
-              <th>Role</th>
+              <th>Action</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -56,11 +57,12 @@ const ManageUsers = () => {
                 <th>{index + 1}</th>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
+                <td>{user.role}</td>
                 <td>
                   <button
                     onClick={() => handleMakeAdmin(user)}
                     className="btn btn-sm btn-outline"
-                    disabled={user.role === "admin"}
+                    disabled={user.role === "Admin"}
                   >
                     Make Admin
                   </button>
@@ -69,7 +71,7 @@ const ManageUsers = () => {
                   <button
                     onClick={() => handleMakeInstructor(user)}
                     className="btn btn-sm btn-outline"
-                    disabled={user.role === "instructor"}
+                    disabled={user.role === "Instructor"}
                   >
                     Make Instructor
                   </button>
