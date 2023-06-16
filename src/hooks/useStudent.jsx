@@ -10,7 +10,7 @@ const useStudent = () => {
     queryFn: async () => {
       const res = await axiosSecure.get(`/users/student/${user?.email}`);
       console.log("is student response", res);
-      return res.data.student;
+      return res.data.Student;
     },
   });
   return [isStudent, isStudentLoading];

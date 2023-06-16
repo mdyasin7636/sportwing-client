@@ -3,12 +3,14 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+// import useStudent from "../../hooks/useStudent";
 
 const Classes = () => {
   const [axiosSecure] = useAxiosSecure();
 
   const { user } = useAuth();
   const navigate = useNavigate();
+  // const [isStudent] = useStudent();
 
   const { data: classes = [] } = useQuery(["classes"], async () => {
     const res = await axiosSecure.get("/classes");
@@ -64,7 +66,7 @@ const Classes = () => {
   return (
     <div className="grid grid-cols-2 gap-8 mx-4 my-4">
       {classes
-        .filter((classItem) => classItem.status === "approved")
+        .filter((classItem) => classItem.status === "Approved")
         .map((classItem) => (
           <div
             className="card card-side bg-base-100 shadow-xl"

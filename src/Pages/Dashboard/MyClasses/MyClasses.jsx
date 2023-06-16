@@ -26,7 +26,7 @@ const MyClasses = () => {
             <p>Price: {classItem.price}</p>
             {/* <p>Enrolled Students: {classItem.enrolledStudents}</p> */}
             <p>Status: {classItem.status}</p>
-            {classItem.status !== "pending" && classItem.status !== "approved" && (
+            {classItem.status !== "Pending" && classItem.status !== "Approved" && (
               <p>Feedback: {classItem.feedback}</p>
             )}
             <div className="card-actions justify-start">

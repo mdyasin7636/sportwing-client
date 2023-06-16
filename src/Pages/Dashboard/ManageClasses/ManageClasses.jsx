@@ -17,7 +17,7 @@ const ManageClasses = () => {
 
   const handleApprove = async (classId) => {
     try {
-      await axiosSecure.patch(`/classes/${classId}`, { status: "approved" });
+      await axiosSecure.patch(`/classes/${classId}`, { status: "Approved" });
       refetch();
     } catch (error) {
       console.error("Error approving class:", error);
@@ -27,7 +27,7 @@ const ManageClasses = () => {
 
   const handleDeny = async (classId) => {
     try {
-      await axiosSecure.patch(`/classes/${classId}`, { status: "denied" });
+      await axiosSecure.patch(`/classes/${classId}`, { status: "Denied" });
       refetch();
     } catch (error) {
       console.error("Error denying class:", error);
@@ -99,7 +99,7 @@ const ManageClasses = () => {
                 <button
                     className="btn btn-outline btn-xs my-1"
                     onClick={() => handleApprove(classItem._id)}
-                    disabled={classItem.status !== "pending"}
+                    disabled={classItem.status !== "Pending"}
                   >
                     Approve
                   </button>
@@ -107,7 +107,7 @@ const ManageClasses = () => {
                   <button
                     className="btn btn-outline btn-xs my-1"
                     onClick={() => handleDeny(classItem._id)}
-                    disabled={classItem.status !== "pending"}
+                    disabled={classItem.status !== "Pending"}
                   >
                     Deny
                   </button>
