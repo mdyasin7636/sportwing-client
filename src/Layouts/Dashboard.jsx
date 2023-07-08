@@ -9,7 +9,6 @@ import useStudent from "../hooks/useStudent";
 
 const Dashboard = () => {
 
-  // TODO:
   const [isAdmin] = useAdmin();
   const [isInstructor] = useInstructor();
   const [isStudent] = useStudent();
