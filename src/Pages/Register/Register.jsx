@@ -28,9 +28,9 @@ const Register = () => {
             name: data.name,
             email: data.email,
             photo: data.photoURL,
-            role: 'Student'
+            role: "Student",
           };
-          fetch("http://localhost:5000/users", {
+          fetch("https://sportwing-server.vercel.app/users", {
             method: "POST",
             headers: {
               "content-type": "application/json",

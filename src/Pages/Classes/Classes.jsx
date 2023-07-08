@@ -4,6 +4,8 @@ import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 // import useStudent from "../../hooks/useStudent";
+// import useAdmin from "../../hooks/useAdmin";
+// import useInstructor from "../../hooks/useInstructor";
 
 const Classes = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -11,6 +13,8 @@ const Classes = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   // const [isStudent] = useStudent();
+  // const [isAdmin] = useAdmin();
+  // const [isInstructor] = useInstructor();
 
   const { data: classes = [] } = useQuery(["classes"], async () => {
     const res = await axiosSecure.get("/classes");
@@ -28,7 +32,7 @@ const Classes = () => {
         classImage: item.classImage,
         availableSeats: item.availableSeats,
       };
-      fetch("http://localhost:5000/bookedClass", {
+      fetch("https://sportwing-server.vercel.app/bookedClass", {
         method: "POST",
         headers: {
           "content-type": "application/json",

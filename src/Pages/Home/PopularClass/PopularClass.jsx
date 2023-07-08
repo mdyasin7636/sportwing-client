@@ -4,7 +4,7 @@ const PopularClass = () => {
   const [classes, setClasses] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/classes")
+    fetch("https://sportwing-server.vercel.app/classes")
       .then((res) => res.json())
       .then((data) => {
         setClasses(data);
@@ -14,7 +14,7 @@ const PopularClass = () => {
   return (
     <div>
       <h2 className="text-center font-bold text-3xl mt-6">Popular Classes </h2>
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-3 gap-6 md:ml-8">
         {classes.slice(0, 6).map((classItem) => (
           <div key={classItem._id} className="card w-96 bg-base-100 shadow-xl ">
             <figure className="px-10 pt-10">
