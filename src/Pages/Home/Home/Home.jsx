@@ -1,6 +1,6 @@
 import AboutUs from "../../AboutUs/AboutUs";
-import InstructorTeam from "../../AboutUs/InstructorTeam/InstructorTeam";
 import Contact from "../../Contact/Contact";
+import ExpertGuides from "../../ExpertGuides";
 import PopularClass from "../PopularClass/PopularClass";
 import PopularInstructor from "../PopularInstructor/PopularInstructor";
 import Slider from "../Slider/Slider";
@@ -12,7 +12,7 @@ const Home = () => {
             <PopularClass></PopularClass>
             <PopularInstructor></PopularInstructor>
             <AboutUs></AboutUs>
-            <InstructorTeam></InstructorTeam>
+            <ExpertGuides></ExpertGuides>
             <Contact></Contact>
         </div>
     );
