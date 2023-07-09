@@ -12,7 +12,7 @@ const ExpertGuides = () => {
           <img className='rounded' src={expertImg} alt="" />
         </div>
         <div className='flex flex-col justify-center items-center px-5'>
-          <h2  className="font-bold text-2xl">
+          <h2  className="font-bold text-2xl text-center">
           Setting the Standard in Sports Instruction
           </h2>
           <p className="font-bold mt-2">Achieve Peak Performance through Personalized Coaching</p>

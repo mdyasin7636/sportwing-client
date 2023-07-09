@@ -1,6 +1,8 @@
 import Swal from "sweetalert2";
 import emailjs from "@emailjs/browser";
 import { useRef } from "react";
+import Lottie from "lottie-react";
+import contactImg from  '../../../src/assets/71618-telegram-message-transp-bkg.json'
 
 const Contact = () => {
   const form = useRef();
@@ -37,20 +39,15 @@ const Contact = () => {
     <div className="mb-10">
       <h2 className="text-center font-bold text-3xl mt-10 mb-6">Contact Us</h2>
       <div className="grid md:grid-cols-2">
-        <div className="text-center pt-6">
-          <p className="font-bold text-lg">QUESTIONS?</p>
-          <p className="font-bold text-lg">COMMENTS?</p>
-          <p className="font-semibold">WE WOOD LOVE TO HEAR FROM YOU</p>
-          <p className="font-semibold">
-            Our Summer Camp Opens 8:00 AM to 5:00 Pm From Saturday-Thursday
-          </p>
-          <p className="mt-2 font-bold text-lg">
-            Our Mailing Address
-          </p>
-          <p className="font-semibold">S2A Charlotte Street, Peterborough</p>
-          <p className="font-semibold">Phone: 705-742-3221</p>
+        <div className="md:relative">
+          <Lottie
+            className="md:absolute md:bottom-5"
+            animationData={contactImg}
+            loop={true}
+          />
         </div>
-        <form ref={form} onSubmit={sendEmail} className="grid gap-5 text-center">
+       <div className="mt-7">
+       <form ref={form} onSubmit={sendEmail} className="grid gap-5 text-center">
           <div>
             <input
               type="text"
@@ -81,6 +78,7 @@ const Contact = () => {
             <input className="btn btn-outline" type="submit" value="Submit" />
           </div>
         </form>
+       </div>
       </div>
     </div>
   );
