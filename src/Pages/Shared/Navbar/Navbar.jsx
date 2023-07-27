@@ -25,8 +25,7 @@ const Navbar = () => {
       </li>
       {user ? (
         <li className="font-semibold text-lg">
-          {" "}
-          <Link to="/dashboard">Dashboard</Link>{" "}
+          <Link to="/dashboard">Dashboard</Link>
         </li>
       ) : (
         ""
@@ -54,16 +53,11 @@ const Navbar = () => {
               />
             </svg>
           </label>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-          >
-            {navOptions}
-          </ul>
+          <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+      {navOptions}
+      </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-2xl font-bold">
-          SportWing
-        </a>
+        <Link to="/" className="ml-4 text-2xl font-bold">SportWing</Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navOptions}</ul>
@@ -93,5 +87,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-// referrerPolicy="no-referrer"

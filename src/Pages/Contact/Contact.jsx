@@ -2,7 +2,7 @@ import Swal from "sweetalert2";
 import emailjs from "@emailjs/browser";
 import { useRef } from "react";
 import Lottie from "lottie-react";
-import contactImg from  '../../../src/assets/71618-telegram-message-transp-bkg.json'
+import contactImg from  '../../../src/assets/contact.json'
 
 const Contact = () => {
   const form = useRef();
@@ -37,16 +37,16 @@ const Contact = () => {
 
   return (
     <div className="mb-10">
-      <h2 className="text-center font-bold text-3xl mt-10 mb-6">Contact Us</h2>
+      <h2 className="text-center font-bold text-3xl mt-10">Contact Us</h2>
       <div className="grid md:grid-cols-2">
-        <div className="md:relative">
+        <div className="">
           <Lottie
-            className="md:absolute md:bottom-5"
+            className=""
             animationData={contactImg}
             loop={true}
           />
         </div>
-       <div className="mt-7">
+       <div className="mt-20">
        <form ref={form} onSubmit={sendEmail} className="grid gap-5 text-center">
           <div>
             <input
