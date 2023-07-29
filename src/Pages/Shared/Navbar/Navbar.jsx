@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
+import logo from '../../../../src/assets/logo.png'
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
@@ -57,7 +58,16 @@ const Navbar = () => {
       {navOptions}
       </ul>
         </div>
-        <Link to="/" className="ml-4 text-2xl font-bold">SportWing</Link>
+        <Link to="/" className="ml-4">
+          <div className="flex items-center">
+            <div className="w-9">
+              <img src={logo} />
+            </div>
+            <div>
+              <p className="text-3xl font-bold">SportWing</p>
+            </div>
+          </div>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navOptions}</ul>
