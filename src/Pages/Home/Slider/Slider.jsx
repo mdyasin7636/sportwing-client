@@ -21,37 +21,73 @@ const Slider = () => {
           '--swiper-pagination-color': '#fff',
         }}
         autoplay={{
-          delay: 2500,
+          delay: 4500,
           disableOnInteraction: false,
         }}
       >
         <SwiperSlide>
           <img src={sliderImg1} alt="" />
           <div className="absolute h-full flex items-center bg-black bg-opacity-60 left-0 top-0">
-          <div>
-            <h2 className="text-center font-extrabold text-white text-3xl">
+          <div className='text-center text-white'>
+            <h2 className="font-extrabold md:text-3xl">
               Unleash Your Potential <br/> At Our Summer Camp
             </h2>
-            <p className="text-center font-semibold text-white mt-5">
+            <p className="font-semibold md:mt-4 md:mx-[450px]">
               Join us at our thrilling summer sports camp where young athletes
               get the opportunity to unlock their full potential and take their
               game to new heights. With a wide range of sports activities,
-              expert coaching, and a fun-filled atmosphere. Our camp promises an
-              unforgettable summer packed with excitement, teamwork, and
-              personal growth. Do not miss out on this incredible opportunity to
-              elevate your game!
+              expert coaching, and a fun-filled atmosphere.
             </p>
           </div>
         </div>
         </SwiperSlide>
         <SwiperSlide>
           <img src={sliderImg2} alt="" />
+          <div className="absolute h-full flex items-center bg-black bg-opacity-60 left-0 top-0">
+          <div className='text-center text-white'>
+            <h2 className="font-extrabold md:text-3xl">
+              Unleash Your Potential <br/> At Our Summer Camp
+            </h2>
+            <p className="font-semibold md:mt-4 md:mx-[450px]">
+              Join us at our thrilling summer sports camp where young athletes
+              get the opportunity to unlock their full potential and take their
+              game to new heights. With a wide range of sports activities,
+              expert coaching, and a fun-filled atmosphere.
+            </p>
+          </div>
+        </div>
         </SwiperSlide>
         <SwiperSlide>
           <img src={sliderImg3} alt="" />
+          <div className="absolute h-full flex items-center bg-black bg-opacity-60 left-0 top-0">
+          <div className='text-center text-white'>
+            <h2 className="font-extrabold md:text-3xl">
+              Unleash Your Potential <br/> At Our Summer Camp
+            </h2>
+            <p className="font-semibold md:mt-4 md:mx-[450px]">
+              Join us at our thrilling summer sports camp where young athletes
+              get the opportunity to unlock their full potential and take their
+              game to new heights. With a wide range of sports activities,
+              expert coaching, and a fun-filled atmosphere.
+            </p>
+          </div>
+        </div>
         </SwiperSlide>
         <SwiperSlide>
           <img src={sliderImg4} alt="" />
+          <div className="absolute h-full flex items-center bg-black bg-opacity-60 left-0 top-0">
+          <div className='text-center text-white'>
+            <h2 className="font-extrabold md:text-3xl">
+              Unleash Your Potential <br/> At Our Summer Camp
+            </h2>
+            <p className="font-semibold md:mt-4 md:mx-[450px]">
+              Join us at our thrilling summer sports camp where young athletes
+              get the opportunity to unlock their full potential and take their
+              game to new heights. With a wide range of sports activities,
+              expert coaching, and a fun-filled atmosphere.
+            </p>
+          </div>
+        </div>
         </SwiperSlide>
        
       </Swiper>

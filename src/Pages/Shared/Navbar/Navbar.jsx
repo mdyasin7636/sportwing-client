@@ -60,11 +60,11 @@ const Navbar = () => {
         </div>
         <Link to="/" className="ml-4">
           <div className="flex items-center">
-            <div className="w-9">
+            <div className="w-7 mt-1">
               <img src={logo} />
             </div>
             <div>
-              <p className="text-3xl font-bold">SportWing</p>
+              <p className="text-2xl font-extrabold">SportWing</p>
             </div>
           </div>
         </Link>
