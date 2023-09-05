@@ -58,9 +58,9 @@ const Navbar = () => {
       {navOptions}
       </ul>
         </div>
-        <Link to="/" className="ml-4">
+        <Link to="/" className="md:ml-4">
           <div className="flex items-center">
-            <div className="w-7 mt-1">
+            <div className="w-9 mt-1">
               <img src={logo} />
             </div>
             <div>

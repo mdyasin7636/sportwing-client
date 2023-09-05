@@ -17,7 +17,7 @@ const Footer = () => {
           </div>
         </Link>
         </div>
-        <div>
+        <div className='grid'>
           <span className="font-bold text-lg">Contact</span>
           <a className="link link-hover font-semibold">Facebook</a>
           <a className="link link-hover font-semibold">Instagram</a>
@@ -46,6 +46,22 @@ const Footer = () => {
     <p>Copyright © 2023 - All right reserved by SportWing</p>
   </div>
     </div>
+
+  // <div className='flex'>
+  //   <div>
+  //     <Link to="/">
+  //     <img src={logo} alt="" className='w-16'/>
+  //     <p>SportWing</p>
+  //     </Link>
+  //   </div>
+  //   <div className='flex'>
+  //     <div>Contact</div>
+  //     <div>Info</div>
+  //     <div>Legal</div>
+  //     <div>Explore</div>
+  //   </div>
+  // </div>
+  
   );
         
 };
