@@ -5,7 +5,7 @@ const AboutUs = () => {
   return (
     <div className="mb-10">
       <Fade>
-        <h2 className="text-center font-bold text-3xl mt-10 mb-6">About Us</h2>
+        <h2 className="text-center font-bold text-3xl mt-10 mb-6">Why Choose Us</h2>
       </Fade>
 
       <div className="grid md:grid-cols-2">
